@@ -1,0 +1,155 @@
+/*
+
+dataViewer 2.0 by jordyvanraaij
+  Designed 
+
+mobile first!
+
+If you like this solution, you 
+
+might also want to check out the 1.0 version:
+  
+
+https://gist.github.com/jordyvanraaij/9069194
+
+*/
+.dataViewer {
+  margin: 1em 0;
+  width: 
+
+100%;
+  overflow: hidden;
+  background: #FFF;
+  
+
+color: #024457;
+  border-radius: 10px;
+  
+
+border: 1px solid #167F92;
+}
+.dataViewer tr {
+  
+
+border: 1px solid #D9E4E6;
+}
+.dataViewer 
+
+tr:nth-child(odd) {
+  background-color: 
+
+#EAF3F3;
+}
+.dataViewer th {
+  display: none;
+  
+
+border: 1px solid #FFF;
+  background-color: 
+
+#167F92;
+  color: #FFF;
+  padding: 1em;
+}
+.dataViewer th:first-child {
+  display: table-
+
+cell;
+  text-align: center;
+}
+.dataViewer 
+
+th:nth-child(2) {
+  display: table-cell;
+}
+.dataViewer th:nth-child(2) span {
+  display: 
+
+none;
+}
+.dataViewer th:nth-child(2):after {
+  
+
+content: attr(data-th);
+}
+@media (min-width: 
+
+480px) {
+  .dataViewer th:nth-child(2) span {
+  
+
+  display: block;
+  }
+  .dataViewer th:nth-
+
+child(2):after {
+    display: none;
+  }
+}
+.dataViewer td {
+  display: block;
+  word-wrap: 
+
+break-word;
+  max-width: 7em;
+}
+.dataViewer 
+
+td:first-child {
+  display: table-cell;
+  
+
+text-align: center;
+  border-right: 1px solid 
+
+#D9E4E6;
+}
+@media (min-width: 480px) {
+  
+
+.dataViewer td {
+    border: 1px solid 
+
+#D9E4E6;
+  }
+}
+.dataViewer th, .dataViewer td 
+
+{
+  text-align: center;
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .dataViewer th, 
+
+.dataViewer td {
+    display: table-cell;
+    
+
+padding: 1em;
+  }
+}
+
+body {
+  padding: 0 2em;
+  
+
+font-family: Arial, sans-serif;
+  color: 
+
+#024457;
+  background: #f2f2f2;
+}
+
+h1 {
+  
+
+font-family: Verdana;
+  font-weight: normal;
+  
+
+color: #024457;
+}
+h1 span {
+  color: #167F92;
+}
