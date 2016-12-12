@@ -47,15 +47,17 @@
 			#賣家增加金錢
 			$sql = "update player set money=money+" . $res['current_price'] . " where playerid = " . $res['sellerid'];
 			mysqli_query($conn, $sql) or die ("transaction: add money error.");
-			# 賣家減少卡片
-			$sql = "update cardbag set count=count-" . $res['count'] . " where playerid=" . $res['sellerid'] . " and cardid=" . $res['cardid'];
-			mysqli_query($conn, $sql) or die ("transaction: sub card error.");
 			# 買家減少金錢
 			$sql = "update player set money=money-" . $res['current_price'] . " where playerid = " . $res['buyerid'];
 			mysqli_query($conn, $sql) or die ("transaction: sub money error.");
 			# 買家增加卡片
 			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid= " . $res['buyerid'] . " and cardid=" . $res['cardid'];
 			mysqli_query($conn, $sql) or die ("transaction: add card error.");
+		} else{ # 商品未賣出而結束競標時間
+			# 賣家增加卡片
+			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid=" . $res['sellerid'] . " and cardid=" . $res['cardid'];
+			mysqli_query($conn, $sql) or die ("transaction: sub card error.");
+			;
 		}
 	}
 ?>
