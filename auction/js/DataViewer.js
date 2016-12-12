@@ -12,20 +12,25 @@ function DataViewer(dataViewerId) {
         var dataArray = this.dataList;
 
         table.append(
-            $("<tr><th>Card Name</th><th>Count</th><th>Reserve Price</th><th>Current Price</th><th>Deadline</th><th>Current Buyer</th><th>Bidding</th></tr>").addClass("dataViewerTableHeader"));
+            $("<tr><th>Card ID</th><th>Count</th><th>Reserve Price</th><th>Current Price</th><th>Deadline</th><th>Current Buyer</th><th>Bidding</th></tr>").addClass("dataViewerTableHeader"));
 
         if (dataArray) {
             $.each($.parseJSON(dataArray), function() {
                 var deadline = new Date(this.deadline);
                 deadline = msToTime(deadline.getTime() - Date.now());
-                table.append("<tr id=" + this.productid + "><td>" + this.cardid + "</td>" + "<td>" + this.count + "</td>" + "<td>" + this.current_price + "</td>" + "<td>" + this.reserve_price + "</td>" + "<td>" + deadline + "</td>" + "<td>" + this.buyerid + "</td>" + "<td>Bidding</td>" + "</tr>")
+                var buyer = this.account;
+                if (!buyer){
+                    buyer = "--";
+                }
+                var bindStr = "<input type=button value=\"出價 \" onClick='bidding(" + this.productid + "," + this.current_price +")'>";
+                table.append("<tr id=" + this.productid + "><td>" + this.cardid + "</td>" + "<td>" + this.count + "</td>" + "<td>" + this.reserve_price + "</td>" + "<td>" + this.current_price + "</td>" + "<td>" + deadline + "</td>" + "<td>" + buyer + "</td>" + "<td>" + bindStr + "</td>" + "</tr>");
             })
         }
     };
 }
 
 function msToTime(s) {
-    var ms = s % 1000;
+    var ms = s % 1000;  
     s = (s - ms) / 1000;
     var secs = s % 60;
     s = (s - secs) / 60;
@@ -33,4 +38,27 @@ function msToTime(s) {
     var hrs = (s - mins) / 60;
 
     return hrs + ':' + mins + ':' + secs;
+}
+
+function bidding(productID, current_price){
+    var price = prompt("請輸入競標價格 (以10元為最低出價) ", current_price + 10);
+    if (!price){
+        return;
+    }
+    if (price > current_price + 9){
+        $.ajax({
+            url: "php/controller.php",
+            dataType: 'html',
+            type: 'POST',
+            data:{ act: 'bid', productID: productID, price: price},
+            success: function() { //the call back function when ajax call succeed
+                alert("出價成功!");
+            },
+            error: function() { //the call back function when ajax call fails
+                alert("出價失敗!");
+            }
+        });
+    } else{
+        alert("價格過低!");
+    }
 }

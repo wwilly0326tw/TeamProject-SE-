@@ -3,7 +3,7 @@
 	date_default_timezone_set("Asia/Taipei");
 	function getItem(){
 		global $conn;
-		$sql = "select * from products";
+		$sql = "SELECT a.*, b.account FROM products as a LEFT JOIN player as b on a.buyerid = b.playerid";
 		$res = mysqli_query($conn, $sql) or die("db error");
 		$rows = array();
 		while($r = mysqli_fetch_assoc($res)) {
@@ -52,12 +52,19 @@
 			mysqli_query($conn, $sql) or die ("transaction: sub money error.");
 			# 買家增加卡片
 			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid= " . $res['buyerid'] . " and cardid=" . $res['cardid'];
-			mysqli_query($conn, $sql) or die ("transaction: add card error.");
+			mysqli_query($conn, $sql) or die ("transaction: buyer add card error.");
 		} else{ # 商品未賣出而結束競標時間
 			# 賣家增加卡片
 			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid=" . $res['sellerid'] . " and cardid=" . $res['cardid'];
-			mysqli_query($conn, $sql) or die ("transaction: sub card error.");
-			;
+			mysqli_query($conn, $sql) or die ("transaction: seller add card error.");
 		}
+	}
+
+	# 進行出價
+	function bidding($productID, $buyerID, $price){
+		global $conn;
+		$sql = "update products set buyerid = $buyerID, current_price = $price where productid = $productID";
+		echo $sql;
+		mysqli_query($conn, $sql) or die ("bidding: bidding error.");
 	}
 ?>

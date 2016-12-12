@@ -2,7 +2,7 @@
 if (!isset($_SESSION)){
 	session_start();
 } else{
-	header('Location: auction.html');
+	header('Location: auction.php');
 }
 $_SESSION['playerID'] = "";
 ?>

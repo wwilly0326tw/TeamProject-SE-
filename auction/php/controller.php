@@ -21,13 +21,13 @@ switch($act) {
 			//set login session mark
 			$_SESSION['playerID'] = $loginID;
 			$_SESSION['name'] = $loginName;
-			header('Location: ../auction.php');
+			header('Location: ../showInventory.php');
 		} else {
 			//set login mark to empty
 			$_SESSION['playerID'] = "";
 			echo "Invalid Username or Password - Please try again <br />";
 			echo "Going to login page in 2 seconds... <br />";
-			header('Refresh: 2;url=../index.html');
+			header('Refresh: 2;url=../index.php');
 		}
 		break;
 
@@ -37,10 +37,10 @@ switch($act) {
 		$res = registUser($name, $pwd);
 		if($res){
 			echo "Regist successed. <br>";
-			echo "<a href='../index.html'>Login</a>";
+			echo "<a href='../index.php'>Login</a>";
 		} else{
 			echo "failed <br>";
-			echo "Going to regit page in 2 seconds... <br />";
+			echo "Going to regist page in 2 seconds... <br />";
 			header('Refresh: 2;url=../regist.html');
 		}
 		break;
@@ -50,6 +50,9 @@ switch($act) {
 		echo getItem();
 		break;
 
+	case "bid":
+		echo bidding($_POST['productID'], $_SESSION['playerID'], $_POST['price']);
+		break;
 	default:
 }
 ?>
