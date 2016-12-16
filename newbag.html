@@ -3,6 +3,7 @@
 <head>
 <title>我的卡片</title>
 <script src="run.js" type="text/javascript"></script>
+<link href="div.css" rel="stylesheet" type ="text/css"/>
 
 </head>
  
@@ -12,69 +13,83 @@
 
 <img src="mycard.jpg" onload="if(this.width>280)this.width=280" border="0">
 
-<hr>
-<h4 align=left>    USER: 王小明　　　　CASH: $80,000　　　　<input type="button" value="拍賣系統" onclick="self.location.href='file:///C:/Users/Lenove/newjs.html'"/></h4>
-<hr>
-<h4 align=left ><font color="#EA0000">      </h4>
+<hr/>
+<div id="divbig">
+<div id="divleft"> <h4 align=left id="name">USER: 王小明	</h4><h4 id="cash">CASH: </h4></div>
+<div id="divright">
+<br/>
+<input type="button" value="拍賣系統" onclick="self.location.href='file:///C:/Users/Lenove/newjs.html'"/></div>
+</div>
 
+<form>
+<h4 align=center>
+<input type="text" value="1">
+<input type="submit" value="換獎金">
 </form>
- <table width="300" border="1" cellspacing="1" cellpadding="1" align="center">
-     <tr>
+
+<div id="table">
+<table width="300" border="1" cellspacing="1" cellpadding="1" align="center">
+    <tr>
+		<th>卡片</th>
         <th>名稱</th>
-        <th >數量</th>
+        <th>數量</th>
 		<th>拍賣</th>
      </tr>
      <tr align="center" id="row1" onMouseOver="changeColor('row1')" onMouseOut="resetColor('row1')">
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picA.html','檢視卡片',config='height=550,width=400');">式神‧善鬼童</a></td>
+		<td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picA.html','檢視卡片',config='height=550,width=400');"><img src="sa.jpg" onload="if(this.width>50)this.width=50" border="0"></a>
+        <td>式神‧善鬼童</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
      </tr> 
     <tr align="center" id="row2" onMouseOver="changeColor('row2')" onMouseOut="resetColor('row2')"> 
-         <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picB.html','檢視卡片',config='height=550,width=400');">奈亞拉托提普</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picB.html','檢視卡片',config='height=550,width=400');"><img src="sb.jpg" onload="if(this.width>50)this.width=50" border="0"></a>
+		<td>奈亞拉托提普</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
     <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picC.html','檢視卡片',config='height=550,width=400');">撕星怒嘯者 拜亞基</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picC.html','檢視卡片',config='height=550,width=400');"><img src="sc.jpg" onload="if(this.width>50)this.width=50" border="0"></a>
+		<td>撕星怒嘯者 拜亞基</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
 	<tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picD.html','檢視卡片',config='height=550,width=400');">天空之神 舒</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picD.html','檢視卡片',config='height=550,width=400');"><img src="sd.jpg" onload="if(this.width>50)this.width=50" border="0"></a></td>
+		<td>天空之神 舒</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
     <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picE.html','檢視卡片',config='height=550,width=400');">伊奇多</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picE.html','檢視卡片',config='height=550,width=400');"><img src="se.jpg" onload="if(this.width>50)this.width=50" border="0"></a></td>
+		<td>伊奇多</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
     <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picF.html','檢視卡片',config='height=550,width=400');">國防布</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picF.html','檢視卡片',config='height=550,width=400');"><img src="sf.jpg" onload="if(this.width>50)this.width=50" border="0"></a></td>
+		<td>國防布</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
     <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picG.html','檢視卡片',config='height=550,width=400');">永生之伊登</a></td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picG.html','檢視卡片',config='height=550,width=400');"><img src="sg.jpg" onload="if(this.width>50)this.width=50" border="0"></a></td>
+		<td>永生之伊登</td>
         <td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
     <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picH.html','檢視卡片',config='height=550,width=400');">皮卡丘</a></td>
-        <td> 1 </td>
+        <td><a href="#" onclick="window.open('file:///C:/Users/Lenove/picH.html','檢視卡片',config='height=550,width=400');"><img src="sh.jpg" onload="if(this.width>50)this.width=50" border="0"></a></td>
+        <td>皮卡丘</td>
+		<td> 1 </td>
 		<th><a href="#" onclick="window.open('file:///C:/Users/Lenove/sellmycard.html', '賣卡片', config='height=200,width=300');"><input id="b" type="button" value="拍賣" onclick="run();" /></a></th>
     </tr>
 </table>
-
-
-<p>
+</div>
 <!--
 <div style="text-align: center;">
     <button type="button">換獎金</button>
 </div>
 -->
-<h4 align=center><a href="#" onclick="window.open('file:///C:/Users/Lenove/change.html', '換獎金', config='height=180,width=300');"><img src="change.jpg" onload="if(this.width>150)this.width=150" border="0"></a></h4>
 
 </body>
- 
 </html>
