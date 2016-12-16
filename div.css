@@ -1,0 +1,14 @@
+#divbig{
+	position: relative;
+}
+#divleft{
+	Float: left;
+}
+#divright{
+	float: right;
+}
+#table{
+	position: relative;
+	top: 50px;
+	left: -50px;
+}
