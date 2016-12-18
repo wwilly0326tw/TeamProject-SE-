@@ -1,11 +1,21 @@
 #divbig{
-	position: relative;
+	margin: 0 auto;
+    position:relative;
 }
 #divleft{
-	Float: left;
+width:auto 200px;
+line-height:50px;
+padding:20px;
+border:2px blue solid opacity:0.0;
+margin-right:10px;
+float:left;
 }
 #divright{
-	float: right;
+width:auto 200px;
+line-height:50px;
+padding:20px;
+border:2px green solid opacity:0.0;
+float:right;
 }
 #table{
 	position: relative;
