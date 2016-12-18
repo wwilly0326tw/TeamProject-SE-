@@ -58,13 +58,20 @@
 			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid=" . $res['sellerid'] . " and cardid=" . $res['cardid'];
 			mysqli_query($conn, $sql) or die ("transaction: seller add card error.");
 		}
+		updateMoney();
 	}
 
 	# 進行出價
 	function bidding($productID, $buyerID, $price){
 		global $conn;
+		$sql = "select money from player where playerid = $buyerID";
+		$rel =  mysqli_fetch_assoc(mysqli_query($conn, $sql));
+		if($rel['money'] < $price){
+			return false;
+		}
+
 		$sql = "update products set buyerid = $buyerID, current_price = $price where productid = $productID";
-		echo $sql;
 		mysqli_query($conn, $sql) or die ("bidding: bidding error.");
+		return true;
 	}
 ?>

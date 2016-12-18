@@ -12,7 +12,7 @@ function DataViewer(dataViewerId) {
         var dataArray = this.dataList;
 
         table.append(
-            $("<tr><th>Card ID</th><th>Count</th><th>Reserve Price</th><th>Current Price</th><th>Deadline</th><th>Current Buyer</th><th>Bidding</th></tr>").addClass("dataViewerTableHeader"));
+            $("<tr><th>Card</th><th>Count</th><th>Reserve Price</th><th>Current Price</th><th>Deadline</th><th>Current Buyer</th><th>Bidding</th></tr>").addClass("dataViewerTableHeader"));
 
         if (dataArray) {
             $.each($.parseJSON(dataArray), function() {
@@ -23,7 +23,8 @@ function DataViewer(dataViewerId) {
                     buyer = "--";
                 }
                 var bindStr = "<input type=button value=\"出價 \" onClick='bidding(" + this.productid + "," + this.current_price +")'>";
-                table.append("<tr id=" + this.productid + "><td>" + this.cardid + "</td>" + "<td>" + this.count + "</td>" + "<td>" + this.reserve_price + "</td>" + "<td>" + this.current_price + "</td>" + "<td>" + deadline + "</td>" + "<td>" + buyer + "</td>" + "<td>" + bindStr + "</td>" + "</tr>");
+                var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                table.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td>" + this.count + "</td>" + "<td>" + this.reserve_price + "</td>" + "<td>" + this.current_price + "</td>" + "<td>" + deadline + "</td>" + "<td>" + buyer + "</td>" + "<td>" + bindStr + "</td>" + "</tr>");
             })
         }
     };
@@ -51,8 +52,14 @@ function bidding(productID, current_price){
             dataType: 'html',
             type: 'POST',
             data:{ act: 'bid', productID: productID, price: price},
-            success: function() { //the call back function when ajax call succeed
-                alert("出價成功!");
+            success: function(res) { //the call back function when ajax call succeed
+                if(res){
+                    console.log(res);
+                    alert("出價成功!");
+                }
+                else{
+                    alert("出價失敗!");
+                }
             },
             error: function() { //the call back function when ajax call fails
                 alert("出價失敗!");

@@ -1,14 +1,18 @@
 <?php
 require("dbConnect.php");
+if (!isset($_SESSION)){
+	session_start();
+}
 
 function checkUser($name, $pwd) {
 	global $conn;
 	$name =mysqli_real_escape_string($conn,$name);
 	$pwd =mysqli_real_escape_string($conn,$pwd);
-	$sql = "SELECT playerid, pwd FROM player WHERE account ='$name'";
+	$sql = "SELECT playerid, pwd, money FROM player WHERE account ='$name'";
 	if ($result = mysqli_query($conn,$sql)) {
 		if ($row=mysqli_fetch_assoc($result)) {
 			if ($row['pwd'] === $pwd) {
+				updateMoney();
 				return $row['playerid'];
 			} 
 		}
@@ -30,6 +34,15 @@ function registUser($name, $pwd){
 			return false;
 		}
 	}
+}
+
+function updateMoney(){
+	global $conn;
+	$name = $_SESSION['name'];
+	$sql = "SELECT money FROM player WHERE account ='$name'";
+	$rel = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+	$_SESSION['money'] = $rel['money'];
+	return;
 }
 
 ?>

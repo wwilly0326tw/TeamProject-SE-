@@ -1,7 +1,8 @@
 window.onload = function(){
 	var dataViewer = new DataViewer("dataViewer");
-	var dataUpdater = new DataUpdater(200, dataViewer); // 200 is the good time
+	var dataUpdater = new DataUpdater(20000, dataViewer); // 200 is the good time
 	dataUpdater.reloadData();
+	$(".fancybox").fancybox();
 	// var element = document.createElement("tr");
 	// element.append(document.createElement("div"))
 	// $('.responstable').append(element);

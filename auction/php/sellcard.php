@@ -7,7 +7,7 @@ $uid=$_SESSION['playerID']; //player id
 $cardid=$_POST['cid']; //要賣的卡片id
 $num=$_POST['number']; //要賣的數量
 $price=$_POST['price']; //底價
-$deadline=$_POST['deadline']; //結標時間
+$deadline=$_POST['deadline'];
 
 //select //要賣的那張卡片id
 $sql="select * from `cardbag` where `playerid`='$uid' and `cardid`=$cardid";
@@ -25,9 +25,9 @@ if ($number >= $num) { //擁有卡片>賣出
     $sql3="insert into `products`(cardid, sellerid, count, reserve_price, current_price, deadline) values($cardid, $uid, $num, $price, $price, '$deadline')";
     mysqli_query($conn, $sql3) or die ("insert products error");
 
-    echo "已拍賣".$cardid.'卡片'.$num.'張';
-    echo '<meta http-equiv=REFRESH CONTENT=1;url=../auction.php>';
+    echo '<meta http-equiv=REFRESH CONTENT=0;url=../auction.php>';
 } else {
     echo "卡片不夠";
+    echo '<meta http-equiv=REFRESH CONTENT=1;url=../showInventory.php>';
 }
 ?>
