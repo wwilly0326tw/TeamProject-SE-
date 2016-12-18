@@ -4,7 +4,7 @@ require "dbconnect.php";
 global $conn;
 session_start();
 $uid=$_SESSION['uID']; //playerid
-//$quantity=$_GET[]; //兌換獎金的數量
+$set=$_POST['number']; //兌換獎金的數量
 $bonus=1000; //獎金金額
 
 //查詢每種卡片張數
@@ -45,9 +45,9 @@ $card8=mysqli_fetch_assoc($resc8);
 if ((int)$card1['count'] >0 && (int)$card2['count'] >0 && (int)$card3['count'] >0 && (int)$card4['count'] >0 && 
     (int)$card5['count'] >0 && (int)$card6['count'] >0 && (int)$card7['count'] >0 && (int)$card8['count'] >0){
 
-    //更新卡片數量 cardid:1到8都減1
+    //更新卡片數量 cardid:1到8都減$set數量
     for ($i=1; $i<9; $i++) { 
-        $sql2="update `cardbag` set `count`=count-1 where `cardid`='$i' and `playerid`='$uid'";
+        $sql2="update `cardbag` set `count`=count-'$set' where `cardid`='$i' and `playerid`='$uid'";
         mysqli_query($conn, $sql2) or die("db2 error");
     }
 
@@ -56,7 +56,7 @@ if ((int)$card1['count'] >0 && (int)$card2['count'] >0 && (int)$card3['count'] >
     $res3=mysqli_query($conn, $sql3) or die("db3 error");
     $resp = mysqli_fetch_assoc($res3);
     $pmoney=(int)($resp['money']);
-    $money = $pmoney + $bonus;
+    $money = $pmoney + $bonus*$set;
     
     //獎金加到player money
     $sql4="update `player` set `money`='$money' where `playerid`='$uid'";
