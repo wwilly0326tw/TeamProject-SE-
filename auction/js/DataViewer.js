@@ -32,11 +32,13 @@ function DataViewer(dataViewerId) {
                 // var bindStr = "<input type=button value=\"出價 \" onClick='bidding(" + this.productid + "," + this.current_price +")'>";
                 if (this.sellerid == 1){
                     var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
-                    var buyStr = "<a href='#' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></a>";
+                    // var buyStr = "<a href='javascript:;' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></a>";
+                    var buyStr = "<span style='cursor:pointer' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></span>";
                     table1.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + buyStr + "</td>" + "</tr>");
                 }
                 else{
-                    var bindStr = "<a href='#' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></a>";
+                    // var bindStr = "<a href='javascript:;' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></a>";
+                    var bindStr = "<span style='cursor:pointer' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></span>";
                     var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
                     table2.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + bindStr + "</td>" + "</tr>");
                 }

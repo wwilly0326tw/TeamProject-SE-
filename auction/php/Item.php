@@ -85,7 +85,7 @@
 		$now = strtotime(Date("Y-m-d H:i:s"));
 		$lastime = strtotime($rel['time']);
 
-		if(($now - $lastime) / 60 > 1){
+		if(($now - $lastime) / 60 > 14){
 			$sql = "select count(*) as count from products where sellerid = 1";
 			$rel = mysqli_query($conn, $sql);
 			$rel = mysqli_fetch_assoc($rel);
