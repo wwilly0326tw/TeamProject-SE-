@@ -36,7 +36,7 @@ while($r = mysqli_fetch_assoc($res)) {
         $_SESSION['money'] = $money;
         if ($res3) {
             echo "<script>alert('Get money : " . $bonus . "')</script>";
-            header("Refresh: 0.5; url=../showInventory.php");
+            header("Refresh: 0.5; url= " . $_SERVER["HTTP_REFERER"]);
             return;
         }
     }

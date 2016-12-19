@@ -1,8 +1,21 @@
 window.onload = function(){
 	var dataViewer = new DataViewer("dataViewer");
-	var dataUpdater = new DataUpdater(20000, dataViewer); // 200 is the good time
+	var dataUpdater = new DataUpdater(200, dataViewer); // 200 is the good time
+	var self = this
 	dataUpdater.reloadData();
 	$(".fancybox").fancybox();
+	this.pakageTimer = function(){
+		$.ajax({
+            url: "php/controller.php",
+            dataType: 'html',
+            type: 'POST',
+            data:{ act: 'createPackage'}
+        });
+        window.setTimeout(function() {
+            self.pakageTimer(); 	
+        }, 60000);
+	}
+	pakageTimer();
 	// var element = document.createElement("tr");
 	// element.append(document.createElement("div"))
 	// $('.responstable').append(element);

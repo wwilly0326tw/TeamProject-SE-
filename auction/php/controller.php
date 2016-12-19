@@ -11,7 +11,6 @@ if(! isset($_POST["act"])) {
 }
 
 $act = $_POST["act"];
-
 switch($act) {
 	case "login":
 		$loginName = $_POST['name'];
@@ -47,11 +46,26 @@ switch($act) {
 
 	case "getItem":
 		checkItemOutOfDate();
+		updateMoney();
 		echo getItem();
 		break;
 
 	case "bid":
 		echo bidding($_POST['productID'], $_SESSION['playerID'], $_POST['price']);
+		break;
+		
+	case "createPackage":
+		creatPackage();
+		break;
+
+	case "lottery":
+		$rel = doLottery($_SESSION['playerID'], $_POST['productID'], $_POST['price']);
+		if ($rel == 1){
+			echo "You don't have enough money.";
+		} else{
+			updateMoney();
+			echo $rel;
+		}
 		break;
 	default:
 }

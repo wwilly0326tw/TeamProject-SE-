@@ -8,6 +8,17 @@ $cardid=$_POST['cid']; //要賣的卡片id
 $num=$_POST['number']; //要賣的數量
 $price=$_POST['price']; //底價
 $deadline=$_POST['deadline'];
+//設定時區
+date_default_timezone_set("Asia/Taipei");
+//取得現在時間，用字串的形式
+$Y=date('Y');
+$m=date('m');
+$d=date('d');
+$H=date('H');
+$i=date('i');
+$s=date('s');
+//預設結標時間+2天
+$deadline=date( ("Y-m-d H:i:s"), mktime($H,$i,$s,$m,$d+$deadline,$Y) );
 
 //select //要賣的那張卡片id
 $sql="select * from `cardbag` where `playerid`='$uid' and `cardid`=$cardid";

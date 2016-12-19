@@ -20,6 +20,7 @@ session_start();
 
 <body>
     <nav>
+    	<img src="img/mycard.jpg" width="300px" height="80px"/>
         <ul class="fancyNav">
             <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
             <li id="acution"><a href="auction.php">Auction</a></li>
@@ -28,14 +29,15 @@ session_start();
             <li id="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
-	<h2 align="right" id="name">
-		User: <?php echo $_SESSION['name'] ?>  CASH: $<?php echo $_SESSION['money'] ?> 
+	<h2 id="userInfo" align="right" id="name">
+	    <a id="username">User- <?php echo $_SESSION['name'] ?></a>
+	    <a id="cash">CASH- $<?php echo $_SESSION['money'] ?></a>
 	</h2>
 <table class="dataViewer" width="1000" border="1" cellspacing="1" cellpadding="1" align="center">
-    <th>Card</th>
-    <th>Name</th>
-    <th>Count</th>
-    <th>Sell</th>
+    <th><h4>Card</h4></th>
+    <th><h4>Name</h4></th>
+    <th><h4>Count</h4></th>
+    <th><h4>Sell</h4></th>
     <?php
 		global $conn;
 		$uid=$_SESSION['playerID'];
@@ -45,7 +47,7 @@ session_start();
 		if($res) {
 		    while($card=mysqli_fetch_assoc($res)) {
 		        $cardnum=$card['count'];
-		        $imgPath = "<a class='fancybox' rel='group' href='".$card['cardurl']."'><img width='80px' src='".$card['cardurl']."' alt='' /></a>";
+		        $imgPath = "<a class='fancybox' rel='group' href='".$card['cardurl']."'><img style='border:2px solid #FFFF33' width='80px' src='".$card['cardurl']."' alt='' /></a>";
 
 		        echo "<tr><td>".$imgPath."</td>";
 		        echo "<td><h3><u>".$card['name']."</u></h3></td>";

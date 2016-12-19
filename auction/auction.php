@@ -19,6 +19,7 @@
 
 <body>
 <nav>
+    <img src="img/paimaib.jpg" width="300px" height="80px"/>
     <ul class="fancyNav">
         <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
         <li id="acution"><a href="auction.php">Auction</a></li>
@@ -27,41 +28,21 @@
         <li id="logout"><a href="logout.php">Logout</a></li>
     </ul>
 </nav>
-<h2 align="right" id="name">
-    User: <?php echo $_SESSION['name'] ?>  CASH: $<?php echo $_SESSION['money'] ?> 
+<h2 id="userInfo" align="right" id="name">
+    <a id="username">User- <?php echo $_SESSION['name'] ?></a>
+    <a id="cash" value=<?php echo $_SESSION['money']?>>CASH- $<?php echo $_SESSION['money']?></a>
 </h2>
-
 <img src="img/fudai.jpg" width="250px" border="0">
-<table width="1000" border="1" cellspacing="1" cellpadding="1" align="center">
- <!--         <tr>
-            <th>名稱</th>
-            <th >數量</th>
-            <th>金額</th>
-            <th>購買</th>
-         </tr>
-         <tr align="center" id="row1" onMouseOver="changeColor('row1')" onMouseOut="resetColor('row1')">
-            <td>福袋A</td>
-            <td> 1 </td>
-            <td> $300 </td>
-            <th><input id="b" type="button" value="購買" onclick="run();" /></th>
-         </tr> 
-        <tr align="center" id="row2" onMouseOver="changeColor('row2')" onMouseOut="resetColor('row2')"> 
-             <td>福袋B</td>
-            <td> 1 </td>
-            <td> $300 </td>
-            <th><input id="b" type="button" value="購買" onclick="run();" /></th>
-        </tr>
-        <tr align="center" id="row3" onMouseOver="changeColor('row3')" onMouseOut="resetColor('row3')"> 
-            <td>福袋C</td>
-            <td> 1 </td>
-            <td> $300 </td>
-            <th><input id="b" type="button" value="購買" onclick="run();" /></th>
-
-        </tr> -->
+<div class="lottery">
+    <div id="left" style="margin-left: 35%;float:left"></div>
+    <div id="right" style="margin-right: 34%;float:right"></div>
+    <div id="center" style="margin-left:46%;margin-right:50%;"></div>
+</div>
+<table class="dataViewer" id="table1" width="1000" border="1" cellspacing="1" cellpadding="1" align="center">    
 </table>
 <hr>
 <hr>
 <img src="img/list.jpg" width=250px border="0">
-<table class="dataViewer" width="1000" border="1" cellspacing="1" cellpadding="1" align="center"></table>
+<table class="dataViewer" id="table2" width="1000" border="1" cellspacing="1" cellpadding="1" align="center"></table>
 </body>
 </html>

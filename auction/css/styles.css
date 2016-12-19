@@ -186,8 +186,17 @@ h1{
 h2{
 	font-size: 15px;
 	padding: 4px 13px 9px 11px;
-	margin-left: 110px;
+	margin-left: 110px ;
+	margin-top: 75px;
 	top: 51px;
+}
+
+h3{
+	font-size: 18px;
+}
+
+h4{
+	font: 20px/1 Lobster,Arial,sans-serif;
 }
 
 header{
