@@ -25,7 +25,13 @@ $cid=$_GET['cid'];
         /*margin: 3px;*/
     }
     </style>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+     
+    <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+    <!--icon-->
+    <link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
+    <!--css-->
+    <link href="css/test.css" rel="stylesheet" type="text/css"/>
 </head>
 <form class="form" action="php/sellcard.php" method="POST" >
 <input type="hidden" name="uID" value="$uID">

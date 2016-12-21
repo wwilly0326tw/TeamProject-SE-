@@ -9,6 +9,12 @@ session_start();
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
+<!--icon-->
+<link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
+<!--css-->
+<link href="css/test.css" rel="stylesheet" type="text/css"/>
+<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">

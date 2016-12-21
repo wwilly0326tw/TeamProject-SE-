@@ -1,9 +1,33 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<h1>Regist Form</h1><hr />
-<form method="post" action="php/controller.php">
-<input type="hidden" name="act" value="regist">
-Account Name: <input type="text" name="name"><br />
-Password : <input type="password" name="pwd"><br />
-<input type="submit" value="regist">
-<input type="button" value="Go back" onclick="location.href='index.php'">
-</form>
+<!DOCTYPE html>
+<head>
+<title>Regist</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+<!--icon-->
+<link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
+<!--css-->
+<link rel="stylesheet" type="text/css" href="css/test.css"/>
+</head>
+<body>
+<div id="wraper">
+    <div id="banner">
+    <img id="bannerimg" src="img/b.png">
+    </div>
+	<div class="webname">
+		<h1><span>Regist an Account</span></h1>
+	</div>
+    <div id="content">
+        <form method="post" action="php/controller.php">
+            <input type="hidden" name="act" value="regist">
+            <div><label><input class="input" type="text" size="30" name="name" value="" onblur="if(this.value=='') this.value=this.defaultValue" onfocus="if(this.value==this.defaultValue) this.value=''"  placeholder="User name" /></label></div>
+	        <div><label><input class="input" type="password" size="30" name="pwd" placeholder="Password" /></label></div>
+			<div><button class="btn" type="submit" value="regist">Regist</button></div>
+            <div><input class="btn" type="button" value="Go back" onclick="location.href='index.php'"></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
