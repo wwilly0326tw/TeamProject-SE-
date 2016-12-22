@@ -12,7 +12,7 @@ $cid=$_GET['cid'];
     <!--icon-->
     <link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
     <!--css-->
-    <link href="css/test.css" rel="stylesheet" type="text/css"/>
+    <link href="css/index.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="content" style="margin-top:5%;">

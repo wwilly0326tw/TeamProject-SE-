@@ -20,13 +20,13 @@ switch($act) {
 			//set login session mark
 			$_SESSION['playerID'] = $loginID;
 			$_SESSION['name'] = $loginName;
-			header('Location: ../showInventory.php');
+			echo "Success";
 		} else {
 			//set login mark to empty
 			$_SESSION['playerID'] = "";
 			echo "Invalid Username or Password - Please try again <br />";
-			echo "Going to login page in 2 seconds... <br />";
-			header('Refresh: 2;url=../index.php');
+			// echo "Going to login page in 2 seconds... <br />";
+			// header('Refresh: 2;url=../index.php');
 		}
 		break;
 
@@ -34,13 +34,16 @@ switch($act) {
 		$pwd = $_POST['pwd'];
 		$name = $_POST['name'];
 		$res = registUser($name, $pwd);
+
+		if($name == "" || $pwd == ""){
+			echo "Please Input Username and Password.";
+			break;
+		}
+
 		if($res){
-			echo "Regist successed. <br>";
-			echo "<a href='../index.php'>Login</a>";
+			echo "Success";
 		} else{
-			echo "failed <br>";
-			echo "Going to regist page in 2 seconds... <br />";
-			header('Refresh: 2;url=../regist.html');
+			echo "Account Duplicated.";
 		}
 		break;
 

@@ -11,22 +11,23 @@ If you like this solution, you might also want to check out the 1.0 version:
   margin: 1em 0;
   width: 100%;
   overflow: hidden;
-  background: #FFF;
-  color: #024457;
+  background: rgba(0, 0, 0, 0.2);
+  color: #000;
   border-radius: 10px;
-  border: 1px solid #167F92;
+  border: 1px solid #167F92;  
 }
 .dataViewer tr {
   border: 1px solid #D9E4E6;
 }
 .dataViewer tr:nth-child(odd) {
-  background-color: #EAF3F3;
+  background-color: rgba(10%,50%,60%,0.3);
 }
 .dataViewer th {
   display: none;
   border: 1px solid #FFF;
-  background-color: #167F92;
-  color: #FFF;
+  /*background-color: #167F92;*/
+  background-color: rgba(10%,50%,60%,0.6);
+  color: #000;
   padding: 1em;
 }
 .dataViewer th:first-child {
@@ -76,7 +77,7 @@ If you like this solution, you might also want to check out the 1.0 version:
   }
 }
 
-body {
+/*body {
   padding: 0 2em;
   font-family: Arial, sans-serif;
   color: #024457;
@@ -91,4 +92,90 @@ h1 {
 
 h1 span {
   color: #167F92;
+}*/
+
+body {
+    font-size: 0.98em; 
+    font-family: Arial, Helvetica, sans-serif; 
+    background-image:url(../img/bg2.png);
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-color: #EAF3F3;
+    text-align:center;
+}
+
+h1{
+    padding:0;
+}
+span {
+    font-size:2.9rem;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+#errorMsg {
+  font-size: 20px;
+  font-family: Palatino Linotype;
+  padding-bottom: 5px;
+  color: red;
+}
+
+div {
+    margin:0 auto;
+}
+
+#wraper{
+  width:40%;
+  padding:0;
+  margin-top:15%;
+}
+#content{
+  padding:10px;
+  width:auto;
+}
+.input {
+    font-family:'PT Mono', sans-serif;
+    border: 1px solid rgb(120, 59, 168);
+    margin-bottom: 15px;
+    font-size: 107% !important;
+    padding: 5px;
+    height: 23px;
+    width: 10rem;
+    border-radius: 3px;
+}
+
+.btn{
+    font-size: 1.2rem;
+    font-family: 'PT Mono', sans-serif;
+    border-radius: 2px;
+    background-color: rgb(110, 50, 157);
+    padding: 5px;
+    background-image: -moz-linear-gradient(left center , rgb(110, 50, 157) 0%, rgb(110, 50, 157) 100%);
+    border: 1px solid rgb(82, 38, 117);
+    color: #FFF;
+    line-height: 1.88rem;
+    width: 10rem;
+}
+#banner {
+  margin: 0 auto;
+  position: absolute;
+  top: 10px;
+}
+#bannerimg{
+    opacity: 0.6;
+    border-radius: 100px;
+}
+
+.selltext {
+    font-size:1.7rem;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+#opt {
+    font-size: 1rem;
+    height: auto;
+    font-family:'PT Mono', sans-serif;
+    border: 1px solid rgb(120, 59, 168);
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 10rem;
+    border-radius: 3px;
 }
