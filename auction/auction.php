@@ -25,7 +25,7 @@
 
 <body>
 <nav>
-    <img src="img/paimaib.jpg" width="300px" height="80px"/>
+    <img src="img/platform.png" height="70px" />
     <ul class="fancyNav">
         <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
         <li id="acution"><a href="auction.php">Auction</a></li>
@@ -38,7 +38,7 @@
     <a id="username">User- <?php echo $_SESSION['name'] ?></a>
     <a id="cash" value=<?php echo $_SESSION['money']?>>CASH- $<?php echo $_SESSION['money']?></a>
 </h2>
-<img src="img/fudai.jpg" width="250px" border="0">
+<img src="img/fukubag.png" height="50px" border="0">
 <div class="lottery">
     <div id="left" style="margin-left: 35%;float:left"></div>
     <div id="right" style="margin-right: 34%;float:right"></div>
@@ -48,7 +48,8 @@
 </table>
 <hr>
 <hr>
-<img src="img/list.jpg" width=250px border="0">
+<br/>
+<img src="img/list.png" width="250px" border="0">
 <table class="dataViewer" id="table2" width="1000" border="1" cellspacing="1" cellpadding="1" align="center"></table>
 </body>
 </html>
