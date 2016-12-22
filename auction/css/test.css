@@ -1,7 +1,7 @@
 body {
     font-size: 0.98em; 
     font-family: Arial, Helvetica, sans-serif; 
-    background-image:url(../img/bg2.png);
+    background-image:url(bg2.png);
     background-attachment:fixed;
     background-repeat:no-repeat;
     background-color: #EAF3F3;
@@ -56,4 +56,18 @@ div {
 #bannerimg{
     opacity: 0.6;
     border-radius: 100px;
+}
+.selltext {
+    font-size:1.7rem;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+#opt {
+    font-size: 1rem;
+    height: auto;
+    font-family:'PT Mono', sans-serif;
+    border: 1px solid rgb(120, 59, 168);
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 10rem;
+    border-radius: 3px;
 }
