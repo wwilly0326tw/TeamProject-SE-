@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-22 17:35:12
+-- 產生時間： 2016-12-23 19:19:55
 -- 伺服器版本: 10.1.16-MariaDB
 -- PHP 版本： 7.0.9
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `auction`
 --
+
+DELIMITER $$
+--
+-- 函數
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `inserttrackrecord` (`playerid` INT, `productid` INT) RETURNS INT(11) begin
+IF not EXISTS (select * from  auction.trackrecord where  auction.trackrecord.playerid = playerid and trackrecord.productid = productid) THEN
+    insert into trackrecord(playerid, productid) values(playerid, productid);
+ELSE 
+    return 1;
+END IF;
+return 0;
+end$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -87,10 +102,10 @@ INSERT INTO `cardbag` (`playerid`, `cardid`, `count`) VALUES
 (20, 8, 0),
 (21, 1, 62),
 (21, 2, 61),
-(21, 3, 73),
-(21, 4, 64),
-(21, 5, 65),
-(21, 6, 54),
+(21, 3, 76),
+(21, 4, 63),
+(21, 5, 63),
+(21, 6, 52),
 (21, 7, 59),
 (21, 8, 60),
 (1, 5, 9999),
@@ -169,7 +184,7 @@ CREATE TABLE `packagetime` (
 --
 
 INSERT INTO `packagetime` (`time`) VALUES
-('2016-12-23 00:26:37');
+('2016-12-24 02:12:52');
 
 -- --------------------------------------------------------
 
@@ -178,7 +193,7 @@ INSERT INTO `packagetime` (`time`) VALUES
 --
 
 CREATE TABLE `player` (
-  `playerid` int(255) NOT NULL,
+  `playerid` int(25) NOT NULL,
   `account` varchar(30) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `pwd` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `money` bigint(255) NOT NULL DEFAULT '1000'
@@ -192,7 +207,7 @@ INSERT INTO `player` (`playerid`, `account`, `pwd`, `money`) VALUES
 (1, 'creator', 'root', 4880),
 (5, 'computer', 'root', 1030),
 (20, 'new', '1', 1000),
-(21, 'com', 'root', 15855),
+(21, 'com', 'root', 13789),
 (22, 'test', 'root', 7000),
 (23, 'Hello', 'root', 1000),
 (25, 'test2', 'root', 1000),
@@ -224,7 +239,7 @@ DELIMITER ;
 
 CREATE TABLE `products` (
   `productid` int(25) NOT NULL,
-  `cardid` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `cardid` int(10) NOT NULL,
   `sellerid` int(255) NOT NULL,
   `count` int(255) NOT NULL,
   `reserve_price` int(255) NOT NULL,
@@ -238,13 +253,57 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`productid`, `cardid`, `sellerid`, `count`, `reserve_price`, `current_price`, `deadline`, `buyerid`) VALUES
-(55, '1', 21, 1, 1, 11, '2016-12-26 00:14:20', 21),
-(56, '8', 21, 1, 1, 1, '2016-12-24 00:17:24', NULL),
-(57, '5', 21, 1, 1, 1, '2016-12-27 00:17:32', NULL),
-(58, '1', 21, 1, 1, 1, '2016-12-27 00:17:40', NULL),
-(59, '6', 21, 1, 1, 1, '2016-12-28 00:17:47', NULL),
-(60, '7', 21, 1, 1, 1, '2016-12-24 00:19:41', NULL),
-(61, '6', 21, 1, 1, 1, '2016-12-28 00:20:35', NULL);
+(55, 1, 21, 1, 1, 81, '2016-12-26 00:14:20', 21),
+(57, 5, 21, 1, 1, 81, '2016-12-27 00:17:32', 21),
+(58, 1, 21, 1, 1, 81, '2016-12-27 00:17:40', 21),
+(59, 6, 21, 1, 1, 151, '2016-12-28 00:17:47', 21),
+(61, 6, 21, 1, 1, 61, '2016-12-28 00:20:35', 21),
+(99, 0, 1, 1, 870, 870, '2016-12-24 02:20:52', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `record`
+--
+
+CREATE TABLE `record` (
+  `rid` int(11) NOT NULL,
+  `cardid` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `buyerid` int(11) NOT NULL,
+  `sellerid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- 資料表的匯出資料 `record`
+--
+
+INSERT INTO `record` (`rid`, `cardid`, `count`, `price`, `time`, `buyerid`, `sellerid`) VALUES
+(1, 0, 1, 1125, '2016-12-23 23:36:53', 21, 1),
+(2, 8, 1, 61, '2016-12-24 00:30:05', 21, 21),
+(3, 0, 1, 868, '2016-12-24 02:14:34', 21, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `trackrecord`
+--
+
+CREATE TABLE `trackrecord` (
+  `playerid` int(25) NOT NULL,
+  `productid` int(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- 資料表的匯出資料 `trackrecord`
+--
+
+INSERT INTO `trackrecord` (`playerid`, `productid`) VALUES
+(21, 55),
+(21, 59),
+(21, 58);
 
 --
 -- 已匯出資料表的索引
@@ -279,6 +338,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`productid`);
 
 --
+-- 資料表索引 `record`
+--
+ALTER TABLE `record`
+  ADD PRIMARY KEY (`rid`);
+
+--
 -- 在匯出的資料表使用 AUTO_INCREMENT
 --
 
@@ -286,12 +351,17 @@ ALTER TABLE `products`
 -- 使用資料表 AUTO_INCREMENT `player`
 --
 ALTER TABLE `player`
-  MODIFY `playerid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `playerid` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- 使用資料表 AUTO_INCREMENT `products`
 --
 ALTER TABLE `products`
-  MODIFY `productid` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `productid` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+--
+-- 使用資料表 AUTO_INCREMENT `record`
+--
+ALTER TABLE `record`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
