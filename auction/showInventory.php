@@ -26,7 +26,7 @@ session_start();
 
 <body>
     <nav>
-    	<img src="img/mycard.jpg" width="300px" height="80px"/>
+    	<img src="img/cardbag1.png" width="300px" height="80px"/>
         <ul class="fancyNav">
             <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
             <li id="acution"><a href="auction.php">Auction</a></li>
