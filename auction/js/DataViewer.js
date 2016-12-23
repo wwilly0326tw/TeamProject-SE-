@@ -8,41 +8,63 @@ function DataViewer(dataViewerId) {
     };
 
     this.update = function() {
-
-        this.table1.find("tr").remove();
-        this.table2.find("tr").remove();
-
         var table1 = this.table1;
         var table2 = this.table2;
         var dataArray = this.dataList;
 
-        table1.append(
-            $("<tr><th><h4>Package</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Buy</h4></th></tr>").addClass("dataViewerTableHeader"));
-        table2.append(
-            $("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Bidding</h4></th></tr>").addClass("dataViewerTableHeader"));
+        if(location.pathname == "/auction/auction.php"){
+            table1.find("tr").remove();
+            table2.find("tr").remove();
+            table1.append(
+                $("<tr><th><h4>Package</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Buy</h4></th></tr>").addClass("dataViewerTableHeader"));
+            table2.append(
+                $("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Bidding</h4></th></tr>").addClass("dataViewerTableHeader"));
 
-        if (dataArray) {
-            $.each($.parseJSON(dataArray), function() {
-                var deadline = new Date(this.deadline);
-                deadline = msToTime(deadline.getTime() - Date.now());
-                var buyer = this.account;
-                if (!buyer){
-                    buyer = "--";
+            if (dataArray) {
+                $.each($.parseJSON(dataArray), function() {
+                    var deadline = new Date(this.deadline);
+                    deadline = msToTime(deadline.getTime() - Date.now());
+                    var buyer = this.account;
+                    if (!buyer){
+                        buyer = "--";
+                    }
+                    // var bindStr = "<input type=button value=\"出價 \" onClick='bidding(" + this.productid + "," + this.current_price +")'>";
+                    if (this.sellerid == 1){
+                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                        // var buyStr = "<a href='javascript:;' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></a>";
+                        var buyStr = "<span style='cursor:pointer' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></span>";
+                        table1.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + buyStr + "</td>" + "</tr>");
+                    }
+                    else{
+                        // var bindStr = "<a href='javascript:;' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></a>";
+                        var bindStr = "<span style='cursor:pointer' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></span>";
+                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                        table2.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + bindStr + "</td>" + "</tr>");
+                    }
+                })
+            }
+        } else if(location.pathname == "/auction/record.php"){
+            if (dataArray) {
+                if($.parseJSON(dataArray)['0']['rid']){
+                    table2.find("tr").remove();
+                    table2.append(
+                    $("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Price</h4></th><th><h4>Time</h4></th></tr>").addClass("dataViewerTableHeader"));
+                    $.each($.parseJSON(dataArray), function() {
+                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                        table2.append("<tr><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td><td><h3>" + this.price + "<h3></td>" + "<td><h3><b>" + this.time + "<b></h3></td>" + "</tr>");
+                    })
+                }else{
+                    table1.find("tr").remove();
+                    table1.append($("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Bidding</h4></th></tr>").addClass("dataViewerTableHeader"));
+                    $.each($.parseJSON(dataArray), function() {
+                        var deadline = new Date(this.deadline);
+                        deadline = msToTime(deadline.getTime() - Date.now());
+                        var bindStr = "<span style='cursor:pointer' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></span>";
+                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                        table1.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + this.account + "<h3></td>" + "<td>" + bindStr + "</td>" + "</tr>");
+                    })
                 }
-                // var bindStr = "<input type=button value=\"出價 \" onClick='bidding(" + this.productid + "," + this.current_price +")'>";
-                if (this.sellerid == 1){
-                    var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
-                    // var buyStr = "<a href='javascript:;' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></a>";
-                    var buyStr = "<span style='cursor:pointer' onClick='buyPackage(" + this.productid + "," + this.current_price +")'><img src='./img/buy.png' width='50' height='50'></span>";
-                    table1.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + buyStr + "</td>" + "</tr>");
-                }
-                else{
-                    // var bindStr = "<a href='javascript:;' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></a>";
-                    var bindStr = "<span style='cursor:pointer' onClick='bidding(" + this.productid + "," + this.current_price +")'><img src='./img/auction.png' width='50' height='50'></span>";
-                    var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
-                    table2.append("<tr id=" + this.productid + "><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td>" + "<td><h3>" + this.reserve_price + "</h3></td>" + "<td><h3>" + this.current_price + "<h3></td>" + "<td><h3><b>" + deadline + "<b></h3></td>" + "<td><h3>" + buyer + "<h3></td>" + "<td>" + bindStr + "</td>" + "</tr>");
-                }
-            })
+            }
         }
     };
 }

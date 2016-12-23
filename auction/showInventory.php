@@ -30,8 +30,8 @@ session_start();
         <ul class="fancyNav">
             <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
             <li id="acution"><a href="auction.php">Auction</a></li>
+            <li id="about"><a href="record.php">Record</a></li>
             <li id="bonus"><a href="php/getbonus.php">Bonus</a></li>
-            <li id="about"><a href="#about">About us</a></li>
             <li id="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>

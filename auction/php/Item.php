@@ -12,27 +12,66 @@
 		return json_encode($rows);
 	}
 
+	# 取得使用者正在競標的商品
+	function getBiddingList($playerID){
+		global $conn;
+		$sql = "select a.*, b.account from (SELECT products.* FROM trackrecord, products WHERE playerid=$playerID and trackrecord.productid=products.productid) as a left join player as b on a.buyerid = b.playerid";
+		$res = mysqli_query($conn, $sql) or die("db error");
+		$rows = array();
+		while($r = mysqli_fetch_assoc($res)) {
+	    	$rows[] = $r;
+		}
+		return json_encode($rows);
+	}
+
+	# 取得使用者已得標的商品紀錄
+	function getPurchasedList($playerID){
+		global $conn;
+		$sql = "SELECT * FROM record WHERE buyerid=$playerID order by time desc";
+		$res = mysqli_query($conn, $sql) or die("db error");
+		$rows = array();
+		while($r = mysqli_fetch_assoc($res)) {
+	    	$rows[] = $r;
+		}
+		return json_encode($rows);
+	}
 
 	# 將到期的物品刪除
 	function checkItemOutOfDate() {
 		global $conn;
-		$sql = "select productid, sellerid, buyerid, deadline, current_price from products";
+		$sql = "select * from products";
 		$result = mysqli_query($conn, $sql) or die ("checkItemOutOfDate: select productid deadline error.");
 		while ($res = mysqli_fetch_assoc($result)) {
 			#商品結標
 			if (strtotime($res['deadline']) <= strtotime(Date("Y-m-d H:i:s")) ) {
 				transaction($res['productid']);
+
+				# 將商品資訊從product中刪除
 				$sql = "delete from products where productid = " . $res['productid'];
 				mysqli_query($conn, $sql) or die ("checkItemOutOfDate: delete expired item error.");
+				if($res['buyerid']){
+					# 將商品資訊放入record
+					$sql = "insert into record(cardid, count, price, buyerid, sellerid) values(" . $res['cardid'] . ", " . $res['count'] . ", " . $res['current_price'] . ", " . $res['buyerid'] . ", " . $res['sellerid'] . ")";
+					mysqli_query($conn, $sql) or die ("checkItemOutOfDate: insert record error.");
+
+					# 將追蹤紀錄刪除
+					$sql = "delete from trackrecord where productid = " . $res['productid'] . " and playerid = " . $res['buyerid'];
+					mysqli_query($conn, $sql) or die ("checkItemOutOfDate: delete track record error.");
+				}
 			}
-			# 購買福袋(缺少提供加入卡片給玩家的功能)
+			# 購買福袋
 			else if ($res['buyerid'] && $res['sellerid'] == 1){
 				# 買家減少金錢
 				$sql = "update player set money=money-" . $res['current_price'] . " where playerid = " . $res['buyerid'];
 				mysqli_query($conn, $sql) or die ("transaction: sub money error.");
 
+				# 將商品資訊從product中刪除
 				$sql = "delete from products where productid = " . $res['productid'];
 				mysqli_query($conn, $sql) or die ("checkItemOutOfDate: delete bag item error.");
+
+				# 將商品資訊放入record
+				$sql = "insert into record(cardid, count, price, buyerid, sellerid) values(" . $res['cardid'] . ", " . $res['count'] . ", " . $res['current_price'] . ", " . $res['buyerid'] . ", " . $res['sellerid'] . ")";
+				mysqli_query($conn, $sql) or die ("checkItemOutOfDate: insert record error.");
 			}
 		}
 
@@ -73,6 +112,15 @@
 
 		$sql = "update products set buyerid = $buyerID, current_price = $price where productid = $productID";
 		mysqli_query($conn, $sql) or die ("bidding: bidding error.");
+
+		# 加入追蹤紀錄
+		$sql = "select count(*) as c from trackrecord where playerid=$buyerID and productid=$productID";
+		$rel = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+		if($rel['c'] == 0){
+			$sql = "insert into trackrecord(playerid, productid) values($buyerID, $productID);";
+			mysqli_query($conn, $sql) or die(mysqli_error($conn));
+		}
+
 		return true;
 	}
 

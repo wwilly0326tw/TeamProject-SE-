@@ -1,6 +1,6 @@
 window.onload = function(){
 	var dataViewer = new DataViewer("dataViewer");
-	var dataUpdater = new DataUpdater(200, dataViewer); // 200 is the good time
+	var dataUpdater = new DataUpdater(450, dataViewer); // 450 is the good time
 	var self = this
 	dataUpdater.reloadData();
 	$(".fancybox").fancybox();

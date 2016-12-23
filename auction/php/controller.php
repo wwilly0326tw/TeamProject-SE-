@@ -53,6 +53,16 @@ switch($act) {
 		echo getItem();
 		break;
 
+	case "getBidding":
+		checkItemOutOfDate();
+		updateMoney();
+		echo getBiddingList($_SESSION['playerID']);
+		break;
+
+	case "getPurchased":
+		echo getPurchasedList($_SESSION['playerID']);
+		break;
+
 	case "bid":
 		echo bidding($_POST['productID'], $_SESSION['playerID'], $_POST['price']);
 		break;
