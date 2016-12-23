@@ -38,7 +38,7 @@ if ($number >= $num) { //擁有卡片>賣出
 
     echo '<meta http-equiv=REFRESH CONTENT=0;url=../auction.php>';
 } else {
-    echo "卡片不夠";
+    echo "<script>alert('Card is not enough.')</script>";
     echo '<meta http-equiv=REFRESH CONTENT=1;url=../showInventory.php>';
 }
 ?>
