@@ -168,7 +168,6 @@ body{
 h1,h2{
 	color: #fff;
 	line-height: 1;
-	background-color: #222;
 	font-family: 'Segoe UI Light','Segoe UI',Arial,sans-serif;
 	font-weight: normal;
 	/*margin: 0 auto;*/
@@ -183,11 +182,11 @@ h1{
 	top: 0;
 }
 
-h2{
-	font-size: 15px;
+#userInfo{
 	padding: 4px 13px 9px 11px;
 	margin-left: 110px ;
 	margin-top: 75px;
+    position:absolute;
 	top: 51px;
 }
 

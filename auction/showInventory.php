@@ -35,10 +35,10 @@ session_start();
             <li id="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
-	<h2 id="userInfo" align="right" id="name">
-	    <a id="username">User- <?php echo $_SESSION['name'] ?></a>
-	    <a id="cash">CASH- $<?php echo $_SESSION['money'] ?></a>
-	</h2>
+<h1 id="userInfo" align="right" style="background-color:white; border:2px; border-radius:10px;">
+    <img src="img/user.png" height="24px"><a id="username"><?php echo $_SESSION['name'];?></a>
+    <img src="img/money.png" height="20px"><a id="cash"> $<?php echo $_SESSION['money'];?></a>
+</h1>
 <table class="dataViewer" width="1000" border="1" cellspacing="1" cellpadding="1" align="center">
     <th><h4>Card</h4></th>
     <th><h4>Name</h4></th>
