@@ -13,7 +13,7 @@
     <!--icon-->
     <link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
     <!--css-->
-    <!-- <link href="css/test.css" rel="stylesheet" type="text/css"/> -->
+    <!--<link href="css/test.css" rel="stylesheet" type="text/css"/>-->
     <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
     <script src="js/jquery-2.1.4.min.js"></script>
@@ -25,7 +25,7 @@
 
 <body>
 <nav>
-    <img src="img/arecord.png" height="70px" />
+    <img src="img/arecored.png" height="70px" />
     <ul class="fancyNav">
         <li id="home"><a href="showInventory.php" class="homeIcon">Home</a></li>            
         <li id="acution"><a href="auction.php">Auction</a></li>
@@ -46,7 +46,7 @@
 <hr>
 <br/>
 <!--得標清單-->
-<img src="img/won.png" height="48px" border="0">
+<img src="img/bwin.png" height="48px" border="0">
 <table class="dataViewer" id="table2" width="1000" border="1" cellspacing="1" cellpadding="1" align="center"></table>
 </body>
 </html>
