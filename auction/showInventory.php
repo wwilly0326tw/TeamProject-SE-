@@ -35,7 +35,7 @@ session_start();
             <li id="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
-<h1 id="userInfo" align="right" style="background-color:white; border:2px; border-radius:10px;">
+<h1 id="userInfo" align="right">
     <img src="img/user.png" height="24px"><a id="username"><?php echo $_SESSION['name'];?></a>
     <img src="img/money.png" height="20px"><a id="cash"> $<?php echo $_SESSION['money'];?></a>
 </h1>
