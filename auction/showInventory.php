@@ -12,7 +12,6 @@ session_start();
 <!--icon-->
 <link rel="Shortcut Icon" type="image/x-icon" href="img/www.png" />
 <!--css-->
-<!-- <link href="css/test.css" rel="stylesheet" type="text/css"/> -->
 <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">

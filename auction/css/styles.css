@@ -3,18 +3,72 @@
 	padding:0;
 }
 
-html{
-	/*background:url('../img/bg_tile.jpg') #333d43;*/
-}
-
 body{
-	/*background:url('../img/bg_head.jpg') repeat-x top center, url('../img/bg_vert.jpg') repeat-x;*/
-	/*min-height:500px;*/
 	font:14px/1.3 'Segoe UI',Arial, sans-serif;
 	color:#888;
 	padding:10px;
 }
 
+h1,h2{
+	color: #fff;
+	line-height: 1;
+	font-family: 'Segoe UI Light','Segoe UI',Arial,sans-serif;
+	font-weight: normal;
+	position: absolute;
+}
+
+h1{
+	font-size: 36px;
+	padding: 5px 15px 10px;
+	top: 0;
+}
+
+h3{
+	font-size: 18px;
+}
+
+h4{
+	font: 20px/1 Lobster,Arial,sans-serif;
+}
+
+header{
+	display:block;
+	margin-top:50px;
+	position:relative;
+}
+
+nav{
+	display: block;
+	margin: 25px auto 25px ;
+	text-align: center;
+	width: 600px;
+}
+
+footer{
+	color: #BBBBBB;
+	font-size: 15px;
+	line-height: 1.6;
+	padding: 60px 20px 0;
+	text-align: center;
+	display:block;
+}
+
+footer b{
+	color: #888888;
+	display: block;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+a, a:visited {
+	text-decoration:none;
+	outline:none;
+	color:#54a6de;
+}
+
+a:hover{
+	text-decoration:underline;
+}
 
 /*----------------------------
 	CSS3 Animated Navigation
@@ -164,24 +218,6 @@ body{
 	Demo Page Styles
 --------------------------*/
 
-
-h1,h2{
-	color: #fff;
-	line-height: 1;
-	font-family: 'Segoe UI Light','Segoe UI',Arial,sans-serif;
-	font-weight: normal;
-	/*margin: 0 auto;*/
-	position: absolute;
-	/*left: 50%;*/
-	/*margin-left: -446px;*/
-}
-
-h1{
-	font-size: 36px;
-	padding: 5px 15px 10px;
-	top: 0;
-}
-
 #userInfo{
     position:absolute;
     left: 0px;
@@ -189,51 +225,4 @@ h1{
     background-color:white; 
     border:2px; 
     border-radius:10px;
-}
-
-h3{
-	font-size: 18px;
-}
-
-h4{
-	font: 20px/1 Lobster,Arial,sans-serif;
-}
-
-header{
-	display:block;
-	margin-top:50px;
-	position:relative;
-}
-
-nav{
-	display: block;
-	margin: 25px auto 25px ;
-	text-align: center;
-	width: 600px;
-}
-
-footer{
-	color: #BBBBBB;
-	font-size: 15px;
-	line-height: 1.6;
-	padding: 60px 20px 0;
-	text-align: center;
-	display:block;
-}
-
-footer b{
-	color: #888888;
-	display: block;
-	font-size: 10px;
-	font-weight: normal;
-}
-
-a, a:visited {
-	text-decoration:none;
-	outline:none;
-	color:#54a6de;
-}
-
-a:hover{
-	text-decoration:underline;
 }
