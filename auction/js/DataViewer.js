@@ -50,7 +50,11 @@ function DataViewer(dataViewerId) {
                     table2.append(
                     $("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Price</h4></th><th><h4>Time</h4></th></tr>").addClass("dataViewerTableHeader"));
                     $.each($.parseJSON(dataArray), function() {
-                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img style='border:2px solid #FFFF33' width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>"
+                        var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img ";
+                        if(this.cardid != "0"){
+                            imgPath += "style='border:2px solid #FFFF33'";
+                        }
+                        imgPath += " width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>";
                         table2.append("<tr><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td><td><h3>" + this.price + "<h3></td>" + "<td><h3><b>" + this.time + "<b></h3></td>" + "</tr>");
                     })
                 }else{
@@ -93,7 +97,7 @@ function bidding(productID, current_price){
         $.ajax({
             url: "php/controller.php",
             dataType: 'html',
-            type: 'POST',
+            type: 'POST',   
             data:{ act: 'bid', productID: productID, price: price},
             success: function(res) { //the call back function when ajax call succeed
                 console.log(res);
