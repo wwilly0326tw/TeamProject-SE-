@@ -98,7 +98,6 @@
 			$sql = "update cardbag set count=count+" . $res['count'] . " where playerid=" . $res['sellerid'] . " and cardid=" . $res['cardid'];
 			mysqli_query($conn, $sql) or die ("transaction: seller add card error.");
 		}
-		updateMoney();
 	}
 
 	# 進行出價
@@ -107,7 +106,12 @@
 		$sql = "select money from player where playerid = $buyerID";
 		$rel =  mysqli_fetch_assoc(mysqli_query($conn, $sql));
 		if($rel['money'] < $price){
-			return false;
+			return 2;
+		}
+		$sql = "select sellerid from products where productid = $productID";
+		$rel =  mysqli_fetch_assoc(mysqli_query($conn, $sql));
+		if($rel['sellerid'] == $buyerID){
+			return 3;
 		}
 
 		$sql = "update products set buyerid = $buyerID, current_price = $price where productid = $productID";
@@ -121,7 +125,7 @@
 			mysqli_query($conn, $sql) or die(mysqli_error($conn));
 		}
 
-		return true;
+		return 1;
 	}
 
 	# 建立福袋
@@ -133,7 +137,7 @@
 		$now = strtotime(Date("Y-m-d H:i:s"));
 		$lastime = strtotime($rel['time']);
 
-		if(($now - $lastime) / 60 > 14){
+		if(($now - $lastime) / 60 > 1){
 			$sql = "select count(*) as count from products where sellerid = 1";
 			$rel = mysqli_query($conn, $sql);
 			$rel = mysqli_fetch_assoc($rel);

@@ -49,13 +49,13 @@ switch($act) {
 
 	case "getItem":
 		checkItemOutOfDate();
-		updateMoney();
+		updateMoney($_SESSION['name']);
 		echo getItem();
 		break;
 
 	case "getBidding":
 		checkItemOutOfDate();
-		updateMoney();
+		updateMoney($_SESSION['name']);
 		echo getBiddingList($_SESSION['playerID']);
 		break;
 
@@ -74,9 +74,9 @@ switch($act) {
 	case "lottery":
 		$rel = doLottery($_SESSION['playerID'], $_POST['productID'], $_POST['price']);
 		if ($rel == 1){
-			echo "You don't have enough money.";
+			echo 1; //"You don't have enough money."
 		} else{
-			updateMoney();
+			updateMoney($_SESSION['name']);
 			echo $rel;
 		}
 		break;

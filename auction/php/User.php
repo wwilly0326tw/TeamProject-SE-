@@ -12,7 +12,7 @@ function checkUser($name, $pwd) {
 	if ($result = mysqli_query($conn,$sql)) {
 		if ($row=mysqli_fetch_assoc($result)) {
 			if ($row['pwd'] === $pwd) {
-				updateMoney();
+				updateMoney($name);
 				return $row['playerid'];
 			} 
 		}
@@ -36,9 +36,8 @@ function registUser($name, $pwd){
 	}
 }
 
-function updateMoney(){
+function updateMoney($name){
 	global $conn;
-	$name = $_SESSION['name'];
 	$sql = "SELECT money FROM player WHERE account ='$name'";
 	$rel = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 	$_SESSION['money'] = $rel['money'];

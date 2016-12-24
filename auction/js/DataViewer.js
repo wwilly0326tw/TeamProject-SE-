@@ -85,6 +85,10 @@ function bidding(productID, current_price){
     if (!price){
         return;
     }
+    if (price < current_price + 10){
+        alert("價格過低.");
+        return;
+    }
     if (price > current_price + 9){
         $.ajax({
             url: "php/controller.php",
@@ -92,11 +96,15 @@ function bidding(productID, current_price){
             type: 'POST',
             data:{ act: 'bid', productID: productID, price: price},
             success: function(res) { //the call back function when ajax call succeed
-                if(res){
+                console.log(res);
+                if(res == 1){
                     alert("出價成功!");
                 }
-                else{
-                    alert("出價失敗!");
+                else if(res == 2){
+                    alert("金錢不足!");
+                }
+                else if(res == 3){
+                    alert("不可購買自己的物品!");
                 }
             },
             error: function() { //the call back function when ajax call fails
@@ -116,6 +124,10 @@ function buyPackage(productID, current_price){
             type: 'POST',
             data:{ act: 'lottery', productID: productID, price: current_price},
             success: function(json) { //the call back function when ajax call succeed
+                if(json == 1){
+                    alert("You don't have enough money.");
+                    return;
+                }
                 // 放入三張抽到的卡片
                 var lotteryDiv = $(".lottery");
                 lotteryDiv.find("img").remove();
@@ -132,7 +144,7 @@ function buyPackage(productID, current_price){
 
                 //更新頁面金錢
                 var cash = $("#cash").attr("value") - current_price;
-                $("#cash").text("CASH- $" + cash);
+                $("#cash").text(" $" + cash);
             },
             error: function(response) { //the call back function when ajax call fails
                 alert("購買失敗!")

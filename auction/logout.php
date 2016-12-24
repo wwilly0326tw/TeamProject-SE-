@@ -16,7 +16,8 @@
 <h1><span>logout...</span></h1>
 <?php
 //將session清空
-unset($_SESSION);
+session_unset();
+session_destroy();
 echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
 ?>
 </div>

@@ -35,7 +35,7 @@
 </nav>
 <h1 id="userInfo" align="right">
     <img src="img/user.png" height="24px"><a id="username"><?php echo $_SESSION['name'];?></a>
-    <img src="img/money.png" height="20px"><a id="cash"> $<?php echo $_SESSION['money'];?></a>
+    <img src="img/money.png" height="20px"><a id="cash" value="<?php echo $_SESSION['money'];?>"> $<?php echo $_SESSION['money'];?></a>
 </h1>
 <img src="img/fubag.png" height="65px" border="0">
 <div class="lottery">

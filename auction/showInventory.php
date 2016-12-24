@@ -37,7 +37,7 @@ session_start();
     </nav>
 <h1 id="userInfo" align="right">
     <img src="img/user.png" height="24px"><a id="username"><?php echo $_SESSION['name'];?></a>
-    <img src="img/money.png" height="20px"><a id="cash"> $<?php echo $_SESSION['money'];?></a>
+    <img src="img/money.png" height="20px"><a id="cash" value="<?php echo $_SESSION['money'];?>"> $<?php echo $_SESSION['money'];?></a>
 </h1>
 <table class="dataViewer" width="1000" border="1" cellspacing="1" cellpadding="1" align="center">
     <th><h4>Card</h4></th>

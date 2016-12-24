@@ -9,9 +9,9 @@ function login(name, pwd){
                 	var ele = $("#wraper");
                 	ele.empty();
                 	ele.append("<h1><span id='errorMsg'>" + retMessage + "</span>");
-                	setTimeout(function(){
-                		window.location = "index.php";
-                	}, 1000);
+                	// setTimeout(function(){
+                	// 	window.location = "index.php";
+                	// }, 1000);
                 } else{
                     window.location = "auction.php";
                 }
