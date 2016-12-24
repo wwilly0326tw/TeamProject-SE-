@@ -11,8 +11,8 @@ function DataViewer(dataViewerId) {
         var table1 = this.table1;
         var table2 = this.table2;
         var dataArray = this.dataList;
-
-        if(location.pathname == "/auction/auction.php"){
+        var pathname = location.pathname;
+        if(pathname.search("/auction/auction.php") != -1){
             table1.find("tr").remove();
             table2.find("tr").remove();
             table1.append(
@@ -43,7 +43,7 @@ function DataViewer(dataViewerId) {
                     }
                 })
             }
-        } else if(location.pathname == "/auction/record.php"){
+        } else if(pathname.search("/auction/record.php") != -1){
             if (dataArray) {
                 if($.parseJSON(dataArray)['0']['rid']){
                     table2.find("tr").remove();
