@@ -100,7 +100,6 @@ function bidding(productID, current_price){
             type: 'POST',   
             data:{ act: 'bid', productID: productID, price: price},
             success: function(res) { //the call back function when ajax call succeed
-                console.log(res);
                 if(res == 1){
                     alert("出價成功!");
                 }
