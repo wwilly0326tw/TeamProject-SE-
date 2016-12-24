@@ -15,6 +15,7 @@ session_start();
 <!-- <link href="css/test.css" rel="stylesheet" type="text/css"/> -->
 <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
