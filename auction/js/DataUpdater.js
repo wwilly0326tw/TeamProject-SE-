@@ -26,7 +26,7 @@ function DataUpdater(timeout, dataViewer) {
                 type: 'POST',
                 data:{ act: 'getBidding'},
                 success: function(json) { //the call back function when ajax call succeed
-                    dataViewer.setData(json);
+                    dataViewer.setData(json, 1);
                     dataViewer.update();
                 },
                 error: function(response) { //the call back function when ajax call fails
@@ -41,7 +41,7 @@ function DataUpdater(timeout, dataViewer) {
                 type: 'POST',
                 data:{ act: 'getPurchased'},
                 success: function(json) { //the call back function when ajax call succeed
-                    dataViewer.setData(json);
+                    dataViewer.setData(json, 2);
                     dataViewer.update();
                 },
                 error: function(response) { //the call back function when ajax call fails

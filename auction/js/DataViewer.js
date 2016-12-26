@@ -3,8 +3,9 @@ function DataViewer(dataViewerId) {
     this.dataViewer = $("." + dataViewerId);
     this.table1 = $("." + dataViewerId + "#table1");
     this.table2 = $("." + dataViewerId + "#table2");
-    this.setData = function(json) {
+    this.setData = function(json, type) {
         this.dataList = json;
+        this.type = type;
     };
 
     this.update = function() {
@@ -45,10 +46,10 @@ function DataViewer(dataViewerId) {
             }
         } else if(pathname.search("/auction/record.php") != -1){
             if (dataArray) {
-                if($.parseJSON(dataArray)['0']['rid']){
+                // if($.parseJSON(dataArray)['0']['rid']){
+                if(this.type == 2){
                     table2.find("tr").remove();
-                    table2.append(
-                    $("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Price</h4></th><th><h4>Time</h4></th></tr>").addClass("dataViewerTableHeader"));
+                    table2.append($("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Price</h4></th><th><h4>Time</h4></th></tr>").addClass("dataViewerTableHeader"));
                     $.each($.parseJSON(dataArray), function() {
                         var imgPath = "<a class='fancybox' rel='group' href='img/" + this.cardid + ".jpg'><img ";
                         if(this.cardid != "0"){
@@ -57,7 +58,7 @@ function DataViewer(dataViewerId) {
                         imgPath += " width='80px' src='img/" + this.cardid + ".jpg' alt='' /></a>";
                         table2.append("<tr><td>" + imgPath + "</td>" + "<td><h3>" + this.count + "<h3></td><td><h3>" + this.price + "<h3></td>" + "<td><h3><b>" + this.time + "<b></h3></td>" + "</tr>");
                     })
-                }else{
+                }else if(this.type == 1){
                     table1.find("tr").remove();
                     table1.append($("<tr><th><h4>Card</h4></th><th><h4>Count</h4></th><th><h4>Reserve Price</h4></th><th><h4>Current Price</h4></th><th><h4>Deadline</h4></th><th><h4>Current Buyer</h4></th><th><h4>Bidding</h4></th></tr>").addClass("dataViewerTableHeader"));
                     $.each($.parseJSON(dataArray), function() {
